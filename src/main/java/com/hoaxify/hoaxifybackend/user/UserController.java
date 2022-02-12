@@ -3,8 +3,13 @@ package com.hoaxify.hoaxifybackend.user;
 import com.hoaxify.hoaxifybackend.common.GenericResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 
 @RestController
@@ -18,10 +23,8 @@ public class UserController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public GenericResponse createUser(@RequestBody User user) {
+    public ResponseEntity createUser(@Valid @RequestBody User user) {
         userService.createUser(user);
-        GenericResponse response = new GenericResponse(true,  "Başarılı");
-        return response;
+        return ResponseEntity.ok(new GenericResponse(true,  "Başarılı"));
     }
 }

@@ -3,7 +3,10 @@ package com.hoaxify.hoaxifybackend.user;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    // only custom methogs goes here...
+
+    Optional<User> findUserByUsername(String username);
 }
