@@ -14,17 +14,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull(message = "Username cannot be null")
+    @NotNull(message = "{hoaxify.constraint.username.notnull.message}")
     @Size(min = 4, max = 140, message = "Length of username must be between {min} and {max}")
     @UniqueUsername
     private String username;
 
-    @NotNull(message = "Display name cannot be null")
+    @NotNull(message = "{hoaxify.constraint.displayName.notnull.message}")
     @Size(min = 4, max = 140, message = "Length of display name must be between {min} and {max}")
     private String displayName;
 
-    @NotNull(message = "Password cannot be null")
+    @NotNull(message = "{hoaxify.constraint.password.notnull.message}")
     @Size(min = 8, max = 140, message = "Length of password name must be between {min} and {max}")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message = "{hoaxify.constraint.password.pattern.message}")
     private String password;
 }
