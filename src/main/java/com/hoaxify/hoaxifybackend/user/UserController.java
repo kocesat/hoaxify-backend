@@ -1,6 +1,7 @@
 package com.hoaxify.hoaxifybackend.user;
 
-import com.hoaxify.hoaxifybackend.common.GenericResponse;
+import com.hoaxify.hoaxifybackend.common.ApiSuccess;
+import com.hoaxify.hoaxifybackend.common.AppConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping(path = "/api/v1/users", produces = "application/json")
+@RequestMapping(path = AppConstants.USERCONTROLLER_BASE_PATH, produces = "application/json")
 public class UserController {
     private UserService userService;
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
@@ -25,6 +26,6 @@ public class UserController {
     @PostMapping
     public ResponseEntity createUser(@Valid @RequestBody User user) {
         userService.createUser(user);
-        return ResponseEntity.ok(new GenericResponse(true,  "Başarılı"));
+        return ResponseEntity.ok(new ApiSuccess(201, AppConstants.SUCCESSFULL_REGISTRATION_MESSAGE, AppConstants.USERCONTROLLER_BASE_PATH));
     }
 }
