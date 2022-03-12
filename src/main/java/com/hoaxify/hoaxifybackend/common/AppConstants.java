@@ -8,4 +8,7 @@ public class AppConstants {
     public static final String UNAUTHORIZED_MESSAGE = "Wrong username or password";
     public static final String INTERNAL_SERVER_ERROR_MESSAGE = "System Error. Try again later";
     public static final String VALIDATION_ERROR_MESSAGE = "Validation Error";
+
+    // comment out later
+    public static final String ARTICLECONTROLLER_BASE_PATH = "/api/v1/article";
 }
