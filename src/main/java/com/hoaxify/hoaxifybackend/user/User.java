@@ -12,7 +12,8 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Data
-@Entity(name = "users")
+@Entity
+@Table(name = "users", schema = "hoaxify")
 public class User implements UserDetails {
     @Transient
     private static final long serialVersionUID = 1L;

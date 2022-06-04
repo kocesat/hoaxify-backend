@@ -2,7 +2,6 @@ package com.hoaxify.hoaxifybackend.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -34,8 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().authenticationEntryPoint(new AuthEntryPoint());
         http.cors().and().csrf().disable()
             .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/api/v1/auth").authenticated()
-            .anyRequest().permitAll();
+//            .antMatchers(HttpMethod.POST, "/api/v1/auth").authenticated()
+            .antMatchers("/").permitAll();
 
         http
             .sessionManagement()

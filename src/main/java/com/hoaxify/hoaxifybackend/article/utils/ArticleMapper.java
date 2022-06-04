@@ -4,6 +4,8 @@ import com.hoaxify.hoaxifybackend.article.dto.ArticleDto;
 import com.hoaxify.hoaxifybackend.article.model.Article;
 import com.hoaxify.hoaxifybackend.article.model.ArticleCategory;
 
+import java.util.stream.Collectors;
+
 public class ArticleMapper {
 
     public static ArticleDto convertToArticleDto(Article articleIn){
@@ -11,6 +13,7 @@ public class ArticleMapper {
         articleOut.setTitle(articleIn.getTitle());
         articleOut.setCategoryCode(articleIn.getCategory().getCode());
         articleOut.setCategoryText(articleIn.getCategory().getText());
+        articleOut.setTags(articleIn.getTags().stream().map(t -> t.getName()).collect(Collectors.toList()));
         return articleOut;
     }
 
