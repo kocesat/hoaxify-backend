@@ -4,6 +4,8 @@ import com.hoaxify.backend.article.dto.ArticleDto;
 import com.hoaxify.backend.article.model.Article;
 import com.hoaxify.backend.article.model.ArticleCategory;
 import com.hoaxify.backend.article.model.Tag;
+import com.hoaxify.backend.article.projection.CategoryCount;
+import com.hoaxify.backend.article.repository.ArticleRepository;
 import com.hoaxify.backend.article.service.ArticleService;
 import com.hoaxify.backend.article.utils.ArticleMapper;
 import com.hoaxify.backend.common.ApiSuccess;
@@ -21,6 +23,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ArticleController {
     private final ArticleService articleService;
+    private final ArticleRepository repository;
+
+    @GetMapping("/count")
+    public ResponseEntity fingCategorySummary() {
+        List<CategoryCount> categoryCount = repository.findCategoryCounts();
+        return ResponseEntity.ok(categoryCount);
+    }
 
     @GetMapping
     public ResponseEntity findAll() {

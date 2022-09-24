@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="01.00"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://bs.tcmb.gov.tr/services/bankaSubeOku/"
+			xmlns:tns="http://bs.tcmb.gov.tr/services/bankaSubeOku/" elementFormDefault="qualified">
+
+	<xsd:element name="bankaSubeOkuIstem">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="blgTur" type="tns:BilgiTuru"/>
+				<xsd:element name="bKd" type="tns:BankaKodu" minOccurs="0"/>
+				<xsd:element name="sKd" type="tns:SubeKodu" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="bankaSubeOkuCevap">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:choice>
+					<xsd:element name="blsCvp" type="tns:BLSCvp"/>
+					<xsd:element name="bnkCvp" type="tns:BNKCvp"/>
+					<xsd:element name="subCvp" type="tns:SUBCvp"/>
+					<xsd:element name="bsbCvp" type="tns:BSBCvp"/>
+					<xsd:element name="tumCvp" type="tns:TUMCvp"/>
+					<xsd:element name="sgbCvp" type="tns:SGBCvp"/>
+					<xsd:element name="sgsCvp" type="tns:SGSCvp"/>
+					<xsd:element name="hata" type="tns:HataSonuc"/>
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="BLSCvp">
+		<xsd:sequence>
+			<xsd:element name="banka" type="tns:Banka" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="BNKCvp">
+		<xsd:sequence>
+			<xsd:element name="banka" type="tns:Banka" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SUBCvp">
+		<xsd:sequence>
+			<xsd:element name="sube" type="tns:Sube" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="BSBCvp">
+		<xsd:sequence>
+			<xsd:element name="sube" type="tns:Sube" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="TUMCvp">
+		<xsd:sequence>
+			<xsd:element name="bankaSubeleri" type="tns:BankaSubeleri" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SGBCvp">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="banka" type="tns:Banka" maxOccurs="unbounded"/>
+				<xsd:element name="SGBYok" fixed="SONGUNCELLEMEYOK"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SGSCvp">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="sube" type="tns:Sube" maxOccurs="unbounded"/>
+				<xsd:element name="SGSYok" fixed="SONGUNCELLEMEYOK"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Banka">
+		<xsd:sequence>
+			<xsd:element name="bKd" type="tns:BankaKodu"/>
+			<xsd:element name="bAd" type="tns:Ad"/>
+			<xsd:element name="bIlAd" type="tns:IlAd"/>
+			<xsd:element name="adr" type="tns:Adr"/>
+		</xsd:sequence>
+		<xsd:attribute name="sonIslemTuru" type="tns:IslevTuru" use="optional"/>
+		<xsd:attribute name="sonIslemZamani" type="tns:ZamanDamgasi" use="optional"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="Sube">
+		<xsd:sequence>
+			<xsd:element name="bKd" type="tns:BankaKodu"/>
+			<xsd:element name="sKd" type="tns:SubeKodu"/>
+			<xsd:element name="sAd" type="tns:Ad"/>
+			<xsd:element name="sIlKd" type="tns:IlKodu"/>
+			<xsd:element name="sIlAd" type="tns:IlAd" minOccurs="0"/>
+			<xsd:element name="sIlcKd" type="tns:IlceKodu" minOccurs="0"/>
+			<xsd:element name="sIlcAd" type="tns:IlceAd" minOccurs="0"/>
+			<xsd:element name="adr" type="tns:Adr" minOccurs="0"/>
+			<xsd:element name="tlf" type="tns:Telefon_Faks" minOccurs="0"/>
+			<xsd:element name="fks" type="tns:Telefon_Faks" minOccurs="0"/>
+			<xsd:element name="epst" type="tns:Eposta" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="sonIslemTuru" type="tns:IslevTuru" use="optional"/>
+		<xsd:attribute name="sonIslemZamani" type="tns:ZamanDamgasi" use="optional"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="BankaSubeleri">
+		<xsd:sequence>
+			<xsd:element name="banka" type="tns:Banka" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="sube" type="tns:Sube" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="bKd" type="tns:BankaKodu" use="required"/>
+		<xsd:attribute name="sAdt" type="xsd:nonNegativeInteger" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="HataSonuc">
+		<xsd:sequence>
+			<xsd:element name="sonucKodu" type="tns:SonucKodu"/>
+			<xsd:element name="aciklama" type="tns:Aciklama" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="SonucKodu">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Z][0-9]{3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Aciklama">
+		<xsd:restriction base="tns:KarakterDizgesi">
+			<xsd:maxLength value="150"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="BilgiTuru">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="BLS|BNK|SUB|BSB|TUM|SGB|SGS"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="IslevTuru">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="E|S|D"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Ad">
+		<xsd:restriction base="tns:KarakterDizgesi">
+			<xsd:pattern value="[^\s]+(.)*"/>
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="IlAd">
+		<xsd:restriction base="tns:KarakterDizgesi">
+			<xsd:pattern value="[^\s]+(.)*"/>
+			<xsd:maxLength value="15"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="IlceAd">
+		<xsd:restriction base="tns:KarakterDizgesi">
+			<xsd:pattern value="[^\s]+(.)*"/>
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Adr">
+		<xsd:restriction base="tns:KarakterDizgesi">
+			<xsd:pattern value="(.)*[^\s]+(.)*"/>
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="BankaKodu">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="SubeKodu">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{5}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="IlKodu">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="IlceKodu">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ZamanDamgasi">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{1,3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="KarakterDizgesi">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([AaBbCcÇçDdEeFfGgĞğHhIıİiJjKkLlMmNnOoÖöPpRrSsŞşTtUuÜüVvYyZzQqWwXx]|[0-9]|\?|\\|\(|\)|\*|\+|\-|/|\{|\}|\[|\]|\^|\.|&#x20;|!|&#x26;|&#x27;|=|:|;|,|%|_|#|@)+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Telefon_Faks">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\+90[0-9]{10}"/>
+			<xsd:minLength value="13"/>
+			<xsd:maxLength value="13"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Eposta">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,6}"/>
+			<xsd:minLength value="7"/>
+			<xsd:maxLength value="70"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

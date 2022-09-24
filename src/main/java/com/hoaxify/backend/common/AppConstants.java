@@ -10,5 +10,6 @@ public class AppConstants {
     public static final String VALIDATION_ERROR_MESSAGE = "Validation Error";
 
     // comment out later
-    public static final String ARTICLECONTROLLER_BASE_PATH = "/api/v1/article";
+    public static final String  ARTICLECONTROLLER_BASE_PATH = "/api/v1/article";
+    public static final String  PARTICIPANT_CONTROLLER_BASE_PATH = "/api/v1/participant";
 }

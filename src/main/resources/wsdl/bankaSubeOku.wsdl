@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://bs.tcmb.gov.tr/services/bankaSubeOku/"
+	xmlns:tns="http://bs.tcmb.gov.tr/services/bankaSubeOku/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://bs.tcmb.gov.tr/services/bankaSubeOku/"
+				schemaLocation="bankaSubeOkuServis.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="bankaSubeOkuGirdi">
+			<wsdl:part element="tns:bankaSubeOkuIstem" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="bankaSubeOkuCikti">
+		<wsdl:part element="tns:bankaSubeOkuCevap" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:portType name="bankaSubeOku">
+		<wsdl:operation name="bankaSubeOku">
+			<wsdl:input message="tns:bankaSubeOkuGirdi" name="bankaSubeOkuGirdi" />
+			<wsdl:output message="tns:bankaSubeOkuCikti" name="bankaSubeOkuCikti" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="bankaSubeOkuSoapBinding" type="tns:bankaSubeOku">
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="bankaSubeOku">
+			<wsdlsoap:operation
+				soapAction="http://bs.tcmb.gov.tr/services/bankaSubeOku" />
+			<wsdl:input name="bankaSubeOkuGirdi">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="bankaSubeOkuCikti">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="bankaSubeOkuService">
+		<wsdl:port name="bankaSubeOku" binding="tns:bankaSubeOkuSoapBinding">
+			<wsdlsoap:address location="https://appg.tcmb.gov.tr/mbnbasuse/services/bankaSubeOku"/>
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>
