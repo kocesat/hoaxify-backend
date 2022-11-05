@@ -1,5 +1,8 @@
 package com.hoaxify.backend.article.model;
 
+import com.hoaxify.backend.approval.enums.OperationGroup;
+import com.hoaxify.backend.common.Approvable;
+import com.hoaxify.backend.common.PersistenceObject;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -13,13 +16,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "articles", schema = "hoaxify")
-public class Article {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Article extends PersistenceObject implements Approvable {
     private String title;
-    private ArticleCategory category;
+
+    private ArticleCategory category = ArticleCategory.SPORT;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Tag> tags = new ArrayList<>();
+
+    @Override
+    public OperationGroup getOperationGroup() {
+        return OperationGroup.ARTICLE;
+    }
 }

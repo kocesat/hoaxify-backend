@@ -11,8 +11,8 @@ public class ArticleMapper {
     public static ArticleDto convertToArticleDto(Article articleIn){
         ArticleDto articleOut = new ArticleDto();
         articleOut.setTitle(articleIn.getTitle());
-        articleOut.setCategoryCode(articleIn.getCategory().getCode());
-        articleOut.setCategoryText(articleIn.getCategory().getText());
+        articleOut.setCategoryCode(articleIn.getCategory() == null ? 1 : articleIn.getCategory().getCode());
+        articleOut.setCategoryText(articleIn.getCategory() == null ? "Null" : articleIn.getCategory().getText());
         articleOut.setTags(articleIn.getTags().stream().map(t -> t.getName()).collect(Collectors.toList()));
         return articleOut;
     }

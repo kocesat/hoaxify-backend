@@ -1,5 +1,7 @@
 package com.hoaxify.backend.article.controller;
 
+import com.hoaxify.backend.approval.model.Approval;
+import com.hoaxify.backend.approval.model.view.ApprovalViewModel;
 import com.hoaxify.backend.article.dto.ArticleDto;
 import com.hoaxify.backend.article.model.Article;
 import com.hoaxify.backend.article.model.ArticleCategory;
@@ -49,6 +51,14 @@ public class ArticleController {
         article.getTags().add(tag);
         Article articleSaved = articleService.create(article);
         return ResponseEntity.ok(new ApiSuccess(201, "Created", AppConstants.ARTICLECONTROLLER_BASE_PATH, articleSaved));
+    }
+
+    @PostMapping("request/add")
+    public ResponseEntity createWithApproval(@RequestBody ArticleDto articleDto) {
+        Article article = ArticleMapper.convertToArticle(articleDto);
+        Approval approval = articleService.createWithApproval(article);
+        return ResponseEntity.ok(new ApiSuccess(200, "B Onayına gönderildi", AppConstants.ARTICLECONTROLLER_BASE_PATH,
+                ApprovalViewModel.newInstance(approval)));
     }
 
     @GetMapping("/category")

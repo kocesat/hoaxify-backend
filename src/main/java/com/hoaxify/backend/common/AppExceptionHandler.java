@@ -1,6 +1,7 @@
 package com.hoaxify.backend.common;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 @RestControllerAdvice
 public class AppExceptionHandler {
@@ -37,6 +37,11 @@ public class AppExceptionHandler {
         ApiError error = new ApiError(401,
                 AppConstants.UNAUTHORIZED_MESSAGE, AppConstants.AUTHCONTROLLER_BASE_PATH);
         return error;
+    }
+
+    @ExceptionHandler(HoaxifyException.class)
+    public ResponseEntity<BaseResponse> handleHoaxifyException(HoaxifyException e) {
+        return ResponseEntity.ok(BaseResponse.fail(e.getMessage()));
     }
 
 
