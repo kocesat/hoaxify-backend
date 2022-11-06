@@ -1,9 +1,9 @@
-package com.hoaxify.backend.wsclient.participant;
+package com.hoaxify.backend.soapclient.participant;
 
-import com.hoaxify.backend.wsclient.SOAPConnector;
-import com.hoaxify.backend.wsclient.participant.model.BankaSubeOkuCevap;
-import com.hoaxify.backend.wsclient.participant.model.BankaSubeOkuIstem;
-import com.hoaxify.backend.wsclient.participant.model.BankaSubeleri;
+import com.hoaxify.backend.soapclient.SOAPConnector;
+import com.hoaxify.backend.soapclient.participant.model.BankaSubeOkuCevap;
+import com.hoaxify.backend.soapclient.participant.model.BankaSubeOkuIstem;
+import com.hoaxify.backend.soapclient.participant.model.BankaSubeleri;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

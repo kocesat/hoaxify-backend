@@ -6,30 +6,45 @@
 //
 
 
-package com.hoaxify.backend.wsclient.participant.model;
+package com.hoaxify.backend.soapclient.participant.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TUMCvp", propOrder = {
-    "bankaSubeleri"
+@XmlType(name = "SUBCvp", propOrder = {
+    "sube"
 })
-public class TUMCvp {
+public class SUBCvp {
 
     @XmlElement(required = true)
-    protected List<BankaSubeleri> bankaSubeleri;
+    protected Sube sube;
 
-    public List<BankaSubeleri> getBankaSubeleri() {
-        if (bankaSubeleri == null) {
-            bankaSubeleri = new ArrayList<BankaSubeleri>();
-        }
-        return this.bankaSubeleri;
+    /**
+     * Gets the value of the sube property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Sube }
+     *     
+     */
+    public Sube getSube() {
+        return sube;
+    }
+
+    /**
+     * Sets the value of the sube property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Sube }
+     *     
+     */
+    public void setSube(Sube value) {
+        this.sube = value;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.hoaxify.backend.wsclient;
+package com.hoaxify.backend.soapclient;
 
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 

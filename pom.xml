@@ -98,7 +98,7 @@
 				</executions>
 				<configuration>
 					<schemaLanguage>WSDL</schemaLanguage>
-					<generatePackage>com.hoaxify.backend.wsclient.participant.model</generatePackage>
+					<generatePackage>com.hoaxify.backend.soapclient.participant.model</generatePackage>
 					<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
 					<schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>
 					<schemaIncludes>

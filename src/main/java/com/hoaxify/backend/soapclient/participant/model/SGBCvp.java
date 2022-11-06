@@ -6,7 +6,7 @@
 //
 
 
-package com.hoaxify.backend.wsclient.participant.model;
+package com.hoaxify.backend.soapclient.participant.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,67 +16,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SGSCvp", propOrder = {
-    "sube",
-    "sgsYok"
+@XmlType(name = "SGBCvp", propOrder = {
+    "bank",
+    "sgbYok"
 })
-public class SGSCvp {
+public class SGBCvp {
 
-    protected List<Sube> sube;
-    @XmlElement(name = "SGSYok")
-    protected Object sgsYok;
+    protected List<Bank> bank;
+    @XmlElement(name = "SGBYok")
+    protected Object sgbYok;
 
     /**
-     * Gets the value of the sube property.
+     * Gets the value of the banka property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the sube property.
+     * This is why there is not a <CODE>set</CODE> method for the banka property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSube().add(newItem);
+     *    getBanka().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Sube }
+     * {@link Bank }
      * 
      * 
      */
-    public List<Sube> getSube() {
-        if (sube == null) {
-            sube = new ArrayList<Sube>();
+    public List<Bank> getBanka() {
+        if (bank == null) {
+            bank = new ArrayList<Bank>();
         }
-        return this.sube;
+        return this.bank;
     }
 
     /**
-     * Gets the value of the sgsYok property.
+     * Gets the value of the sgbYok property.
      * 
      * @return
      *     possible object is
      *     {@link Object }
      *     
      */
-    public Object getSGSYok() {
-        return sgsYok;
+    public Object getSGBYok() {
+        return sgbYok;
     }
 
     /**
-     * Sets the value of the sgsYok property.
+     * Sets the value of the sgbYok property.
      * 
      * @param value
      *     allowed object is
      *     {@link Object }
      *     
      */
-    public void setSGSYok(Object value) {
-        this.sgsYok = value;
+    public void setSGBYok(Object value) {
+        this.sgbYok = value;
     }
 
 }

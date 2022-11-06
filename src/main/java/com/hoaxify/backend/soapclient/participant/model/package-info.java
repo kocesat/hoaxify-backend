@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://bs.tcmb.gov.tr/services/bankaSubeOku/", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.hoaxify.backend.wsclient.participant.model;
+package com.hoaxify.backend.soapclient.participant.model;

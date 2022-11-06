@@ -1,6 +1,6 @@
-package com.hoaxify.backend.wsclient.config;
+package com.hoaxify.backend.soapclient.config;
 
-import com.hoaxify.backend.wsclient.SOAPConnector;
+import com.hoaxify.backend.soapclient.SOAPConnector;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;

@@ -14,85 +14,85 @@ Generated on: 2022.09.24 at 11:43:14 AM TRT
             
         <schemaBindings map="false">
                   
-            <package name="com.hoaxify.backend.wsclient.participant.model"/>
+            <package name="com.hoaxify.backend.soapclient.participant.model"/>
                 
         </schemaBindings>
             
         <bindings if-exists="true" scd="tns:bankaSubeOkuIstem">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.BankaSubeOkuIstem"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.BankaSubeOkuIstem"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="tns:bankaSubeOkuCevap">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.BankaSubeOkuCevap"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.BankaSubeOkuCevap"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:BLSCvp">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.BLSCvp"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.BLSCvp"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:BNKCvp">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.BNKCvp"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.BNKCvp"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:SUBCvp">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.SUBCvp"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.SUBCvp"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:BSBCvp">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.BSBCvp"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.BSBCvp"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:TUMCvp">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.TUMCvp"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.TUMCvp"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:SGBCvp">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.SGBCvp"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.SGBCvp"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:SGSCvp">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.SGSCvp"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.SGSCvp"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:HataSonuc">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.HataSonuc"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.HataSonuc"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:Banka">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.Bank"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.Bank"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:Sube">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.Sube"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.Sube"/>
                 
         </bindings>
             
         <bindings if-exists="true" scd="~tns:BankaSubeleri">
                   
-            <class ref="com.hoaxify.backend.wsclient.participant.model.BankaSubeleri"/>
+            <class ref="com.hoaxify.backend.soapclient.participant.model.BankaSubeleri"/>
                 
         </bindings>
           

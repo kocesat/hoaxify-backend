@@ -6,7 +6,7 @@
 //
 
 
-package com.hoaxify.backend.wsclient.participant.model;
+package com.hoaxify.backend.soapclient.participant.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

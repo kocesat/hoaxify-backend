@@ -1,7 +1,7 @@
-package com.hoaxify.backend.wsclient;
+package com.hoaxify.backend.soapclient;
 
 import com.hoaxify.backend.common.AppConstants;
-import com.hoaxify.backend.wsclient.participant.service.ParticipantService;
+import com.hoaxify.backend.soapclient.participant.service.ParticipantService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
