@@ -1,6 +1,6 @@
 package com.hoaxify.backend.article.utils;
 
-import com.hoaxify.backend.article.dto.ArticleDto;
+import com.hoaxify.backend.article.model.dto.ArticleDto;
 import com.hoaxify.backend.article.model.Article;
 import com.hoaxify.backend.article.model.ArticleCategory;
 
@@ -11,6 +11,7 @@ public class ArticleMapper {
     public static ArticleDto convertToArticleDto(Article articleIn){
         ArticleDto articleOut = new ArticleDto();
         articleOut.setTitle(articleIn.getTitle());
+        articleOut.setId(articleIn.getId());
         articleOut.setCategoryCode(articleIn.getCategory() == null ? 1 : articleIn.getCategory().getCode());
         articleOut.setCategoryText(articleIn.getCategory() == null ? "Null" : articleIn.getCategory().getText());
         articleOut.setTags(articleIn.getTags().stream().map(t -> t.getName()).collect(Collectors.toList()));

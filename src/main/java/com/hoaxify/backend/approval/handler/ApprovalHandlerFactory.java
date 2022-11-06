@@ -1,7 +1,7 @@
 package com.hoaxify.backend.approval.handler;
 
 import com.hoaxify.backend.approval.enums.OperationGroup;
-import com.hoaxify.backend.article.approval.handler.ArticleApprovalHandler;
+import com.hoaxify.backend.article.handler.ArticleApprovalHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

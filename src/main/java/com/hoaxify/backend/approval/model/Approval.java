@@ -38,7 +38,7 @@ public class Approval extends PersistenceObject {
 
     private LocalDateTime timeOfApprovalA;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "approval")
     private List<ApprovalDetail> detailList = new ArrayList<>();
 }
 

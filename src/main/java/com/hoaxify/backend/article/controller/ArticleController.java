@@ -2,17 +2,17 @@ package com.hoaxify.backend.article.controller;
 
 import com.hoaxify.backend.approval.model.Approval;
 import com.hoaxify.backend.approval.model.view.ApprovalViewModel;
-import com.hoaxify.backend.article.dto.ArticleDto;
 import com.hoaxify.backend.article.model.Article;
 import com.hoaxify.backend.article.model.ArticleCategory;
-import com.hoaxify.backend.article.model.Tag;
+import com.hoaxify.backend.article.model.dto.ArticleDto;
 import com.hoaxify.backend.article.projection.CategoryCount;
 import com.hoaxify.backend.article.repository.ArticleRepository;
+import com.hoaxify.backend.article.service.ArticleApprovalService;
 import com.hoaxify.backend.article.service.ArticleService;
 import com.hoaxify.backend.article.utils.ArticleMapper;
 import com.hoaxify.backend.common.ApiSuccess;
 import com.hoaxify.backend.common.AppConstants;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,10 +22,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = AppConstants.ARTICLECONTROLLER_BASE_PATH, produces = "application/json")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ArticleController {
     private final ArticleService articleService;
     private final ArticleRepository repository;
+    private final ArticleApprovalService articleApprovalService;
 
     @GetMapping("/count")
     public ResponseEntity fingCategorySummary() {
@@ -37,26 +38,20 @@ public class ArticleController {
     public ResponseEntity findAll() {
         List<ArticleDto> articleDtos = articleService.getAll()
                 .stream()
-                .map(article -> ArticleMapper.convertToArticleDto(article))
+                .map(ArticleMapper::convertToArticleDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(new ApiSuccess(200, "Successfull", AppConstants.ARTICLECONTROLLER_BASE_PATH, articleDtos));
     }
 
     @PostMapping("/add")
     public ResponseEntity create(@RequestBody ArticleDto articleDto) {
-        Article article = ArticleMapper.convertToArticle(articleDto);
-        Tag tag = new Tag();
-        tag.setName("tıraş3");
-
-        article.getTags().add(tag);
-        Article articleSaved = articleService.create(article);
+        Article articleSaved = articleService.create(articleDto);
         return ResponseEntity.ok(new ApiSuccess(201, "Created", AppConstants.ARTICLECONTROLLER_BASE_PATH, articleSaved));
     }
 
     @PostMapping("request/add")
     public ResponseEntity createWithApproval(@RequestBody ArticleDto articleDto) {
-        Article article = ArticleMapper.convertToArticle(articleDto);
-        Approval approval = articleService.createWithApproval(article);
+        Approval approval = articleApprovalService.create(articleDto);
         return ResponseEntity.ok(new ApiSuccess(200, "B Onayına gönderildi", AppConstants.ARTICLECONTROLLER_BASE_PATH,
                 ApprovalViewModel.newInstance(approval)));
     }

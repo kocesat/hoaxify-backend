@@ -1,6 +1,8 @@
 package com.hoaxify.backend.approval.model.view;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hoaxify.backend.approval.model.Approval;
+import com.hoaxify.backend.common.web.serializer.LocalDateTimeSerializer;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +19,9 @@ public class ApprovalViewModel {
     private String crudType;
     private String operationGroup;
     private String approvalStatus;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime timeOfApprovalB;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime timeOfApprovalA;
     private List<ApprovalDetailViewModel> detailList;
 
