@@ -13,4 +13,5 @@ public class AppConstants {
     public static final String  ARTICLECONTROLLER_BASE_PATH = "/api/v1/article";
     public static final String  PARTICIPANT_CONTROLLER_BASE_PATH = "/api/v1/participant";
     public static final String  APPROVAL_CONTROLLER_BASE_PATH = "/api/v1/approval";
+    public static final String  TODO_CONTROLLER_BASE_PATH = "/api/v1/todo";
 }

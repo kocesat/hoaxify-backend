@@ -10,7 +10,7 @@ public class WsConfig {
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("com.hoaxify.backend.wsclient.participant.model");
+        marshaller.setContextPath("com.hoaxify.backend.soapclient.participant.model");
         return marshaller;
     }
 
