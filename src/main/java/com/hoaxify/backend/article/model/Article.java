@@ -1,6 +1,6 @@
 package com.hoaxify.backend.article.model;
 
-import com.hoaxify.backend.approval.enums.OperationGroup;
+import com.hoaxify.backend.approval.enums.ObjectGroup;
 import com.hoaxify.backend.common.Approvable;
 import com.hoaxify.backend.common.PersistenceObject;
 import lombok.Getter;
@@ -25,7 +25,7 @@ public class Article extends PersistenceObject implements Approvable {
     private List<Tag> tags = new ArrayList<>();
 
     @Override
-    public OperationGroup getOperationGroup() {
-        return OperationGroup.ARTICLE;
+    public ObjectGroup getObjectGroup() {
+        return ObjectGroup.ARTICLE;
     }
 }

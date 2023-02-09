@@ -1,7 +1,7 @@
 package com.hoaxify.backend.article.service.impl;
 
 import com.hoaxify.backend.article.model.Article;
-import com.hoaxify.backend.article.model.dto.ArticleDto;
+import com.hoaxify.backend.article.model.dto.Approvable;
 import com.hoaxify.backend.article.repository.ArticleRepository;
 import com.hoaxify.backend.article.service.ArticleService;
 import com.hoaxify.backend.article.utils.ArticleMapper;
@@ -31,7 +31,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article create(ArticleDto dto) {
+    public Article create(Approvable dto) {
         return articleRepository.save(ArticleMapper.convertToArticle(dto));
     }
 }

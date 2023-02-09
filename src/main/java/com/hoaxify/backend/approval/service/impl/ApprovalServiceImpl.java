@@ -11,7 +11,7 @@ import com.hoaxify.backend.approval.model.dto.ApprovalDto;
 import com.hoaxify.backend.approval.repository.ApprovalDetailRepository;
 import com.hoaxify.backend.approval.repository.ApprovalRepository;
 import com.hoaxify.backend.approval.service.ApprovalService;
-import com.hoaxify.backend.article.model.dto.ArticleDto;
+import com.hoaxify.backend.article.model.dto.Approvable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -48,8 +48,8 @@ public class ApprovalServiceImpl implements ApprovalService {
             Approval approval = repository.findById(dto.getId())
                     .orElseThrow(ApprovalException::new);
             result.add(approval);
-            ApprovalStatus approveMode = ApprovalStatus.getFromCode(dto.getApproveMode());
-            switch (approveMode) {
+            ApprovalStatus approvalStatus = ApprovalStatus.getFromCode(dto.getApproveMode());
+            switch (approvalStatus) {
                 case APPROVED_B:
                     this.approveB(approval);
                     break;
@@ -61,19 +61,25 @@ public class ApprovalServiceImpl implements ApprovalService {
                     repository.save(approval);
                     break;
                 default:
-                    throw new IllegalStateException("Desteklenmeyen onay türü");
+                    throw new IllegalStateException("Unsupported approval type!");
             }
         }
         return result;
     }
 
     @Override
-    public Approval create(ArticleDto dto, CrudType crudType, Map<String, String> newValues, ApprovalStatus approveMode) {
+    public Approval create(Approvable approvable, CrudType crudType, Map<String, String> newValues, ApprovalStatus approvalStatus) {
         Approval approval = Approval.builder()
                 .crudType(crudType)
-                .operationGroup(dto.getOperationGroup())
-                .status(approveMode)
+                .objectGroup(approvable.getObjectGroup())
+                .status(approvalStatus)
                 .build();
+        /**
+         * TODO:
+         * Also create a representational string of approval
+         * like what will be done when this approval gets approvedA finally
+         * for example: An article whose name is blabla will be created!
+         */
         repository.save(approval);
         List<ApprovalDetail> details = new ArrayList<>();
         for (String propertyName : newValues.keySet()) {
@@ -87,11 +93,12 @@ public class ApprovalServiceImpl implements ApprovalService {
         if (approval.getStatus() != ApprovalStatus.APPROVED_B) {
             throw new ApprovalException("Cannot approve A");
         }
-        // check user authorization
+        // todo: check user authorization. i.e does user have the right to approve B?
+        // todo: check user is not already in the approval chain
         approval.setStatus(ApprovalStatus.APPROVED_A);
         approval.setTimeOfApprovalA(LocalDateTime.now());
         repository.save(approval);
-        ApprovalHandler handler = handlerFactory.getHandler(approval.getOperationGroup());
+        ApprovalHandler handler = handlerFactory.getHandler(approval.getObjectGroup());
         handler.handle(approval);
     }
 
@@ -99,7 +106,8 @@ public class ApprovalServiceImpl implements ApprovalService {
         if (approval.getStatus() != ApprovalStatus.NEW) {
             throw new ApprovalException("Approval status must be NEW to approve B");
         }
-        // check user Approve authorization
+        // todo: check user authorization. i.e does user have the right to approve B?
+        // todo: check user is not already in the approval chain
         approval.setStatus(ApprovalStatus.APPROVED_B);
         approval.setTimeOfApprovalB(LocalDateTime.now());
         repository.save(approval);

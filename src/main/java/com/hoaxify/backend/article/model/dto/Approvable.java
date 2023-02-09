@@ -1,7 +1,6 @@
 package com.hoaxify.backend.article.model.dto;
 
-import com.hoaxify.backend.approval.enums.OperationGroup;
-import com.hoaxify.backend.common.Approvable;
+import com.hoaxify.backend.approval.enums.ObjectGroup;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,16 +10,12 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ArticleDto implements Approvable {
-
+public class Approvable implements com.hoaxify.backend.common.Approvable {
     private Long id;
-
     @NotNull
     private String title;
-
     @NotNull
     private int categoryCode;
-
     private String categoryText;
     private List<String> tags = new ArrayList<>();
 
@@ -31,7 +26,7 @@ public class ArticleDto implements Approvable {
     }
 
     @Override
-    public OperationGroup getOperationGroup() {
-        return OperationGroup.ARTICLE;
+    public ObjectGroup getObjectGroup() {
+        return ObjectGroup.ARTICLE;
     }
 }

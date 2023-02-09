@@ -4,7 +4,7 @@ import com.hoaxify.backend.approval.model.Approval;
 import com.hoaxify.backend.approval.model.view.ApprovalViewModel;
 import com.hoaxify.backend.article.model.Article;
 import com.hoaxify.backend.article.model.ArticleCategory;
-import com.hoaxify.backend.article.model.dto.ArticleDto;
+import com.hoaxify.backend.article.model.dto.Approvable;
 import com.hoaxify.backend.article.projection.CategoryCount;
 import com.hoaxify.backend.article.repository.ArticleRepository;
 import com.hoaxify.backend.article.service.ArticleApprovalService;
@@ -36,7 +36,7 @@ public class ArticleController {
 
     @GetMapping
     public ResponseEntity findAll() {
-        List<ArticleDto> articleDtos = articleService.getAll()
+        List<Approvable> articleDtos = articleService.getAll()
                 .stream()
                 .map(ArticleMapper::convertToArticleDto)
                 .collect(Collectors.toList());
@@ -44,13 +44,13 @@ public class ArticleController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity create(@RequestBody ArticleDto articleDto) {
+    public ResponseEntity create(@RequestBody Approvable articleDto) {
         Article articleSaved = articleService.create(articleDto);
         return ResponseEntity.ok(new ApiSuccess(201, "Created", AppConstants.ARTICLECONTROLLER_BASE_PATH, articleSaved));
     }
 
     @PostMapping("request/add")
-    public ResponseEntity createWithApproval(@RequestBody ArticleDto articleDto) {
+    public ResponseEntity createWithApproval(@RequestBody Approvable articleDto) {
         Approval approval = articleApprovalService.create(articleDto);
         return ResponseEntity.ok(new ApiSuccess(200, "B Onayına gönderildi", AppConstants.ARTICLECONTROLLER_BASE_PATH,
                 ApprovalViewModel.newInstance(approval)));

@@ -5,7 +5,7 @@ import com.hoaxify.backend.approval.enums.CrudType;
 import com.hoaxify.backend.approval.exception.ApprovalException;
 import com.hoaxify.backend.approval.handler.ApprovalHandler;
 import com.hoaxify.backend.approval.model.Approval;
-import com.hoaxify.backend.article.model.dto.ArticleDto;
+import com.hoaxify.backend.article.model.dto.Approvable;
 import com.hoaxify.backend.article.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -26,12 +26,12 @@ public class ArticleApprovalHandler implements ApprovalHandler {
     public void handle(Approval approval) throws ApprovalException {
         if (approval.getCrudType() == CrudType.CREATE
                 && approval.getStatus() == ApprovalStatus.APPROVED_A) {
-            ArticleDto dto = new ArticleDto();
+            Approvable dto = new Approvable();
             try {
                 setObjectFields(dto, approval.getDetailList());
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
-                throw new ApprovalException("Obje yaratılırken hata oluştu", e);
+                throw new ApprovalException("Error when creating object", e);
             }
             articleService.create(dto);
         }

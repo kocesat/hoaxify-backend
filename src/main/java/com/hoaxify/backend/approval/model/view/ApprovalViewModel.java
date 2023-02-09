@@ -32,7 +32,7 @@ public class ApprovalViewModel {
         return ApprovalViewModel.builder()
                 .key(approval.getId())
                 .crudType(approval.getCrudType().getText())
-                .operationGroup(approval.getOperationGroup().getText())
+                .operationGroup(approval.getObjectGroup().getText())
                 .approvalStatus(approval.getStatus().getText())
                 .timeOfApprovalB(approval.getTimeOfApprovalB())
                 .timeOfApprovalA(approval.getTimeOfApprovalA())

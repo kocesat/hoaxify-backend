@@ -5,7 +5,7 @@ import com.hoaxify.backend.approval.enums.CrudType;
 import com.hoaxify.backend.approval.exception.ApprovalException;
 import com.hoaxify.backend.approval.model.Approval;
 import com.hoaxify.backend.approval.model.dto.ApprovalDto;
-import com.hoaxify.backend.article.model.dto.ArticleDto;
+import com.hoaxify.backend.article.model.dto.Approvable;
 
 import java.util.List;
 import java.util.Map;
@@ -16,5 +16,5 @@ public interface ApprovalService {
 
     List<Approval> bulkUpdate(List<ApprovalDto> approvalDtos) throws ApprovalException;
 
-    Approval create(ArticleDto dto, CrudType crudType, Map<String, String> newValues, ApprovalStatus approveMode);
+    Approval create(Approvable approvable, CrudType crudType, Map<String, String> newValues, ApprovalStatus approveMode);
 }

@@ -2,10 +2,10 @@ package com.hoaxify.backend.approval.model;
 
 import com.hoaxify.backend.approval.enums.ApprovalStatus;
 import com.hoaxify.backend.approval.enums.CrudType;
-import com.hoaxify.backend.approval.enums.OperationGroup;
+import com.hoaxify.backend.approval.enums.ObjectGroup;
 import com.hoaxify.backend.approval.enums.converter.AprrovalStatusConverter;
 import com.hoaxify.backend.approval.enums.converter.CrudTypeConverter;
-import com.hoaxify.backend.approval.enums.converter.OperationGroupConverter;
+import com.hoaxify.backend.approval.enums.converter.ObjectGroupConverter;
 import com.hoaxify.backend.common.PersistenceObject;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -27,8 +27,8 @@ public class Approval extends PersistenceObject {
     @Convert(converter = CrudTypeConverter.class)
     private CrudType crudType;
 
-    @Convert(converter = OperationGroupConverter.class)
-    private OperationGroup operationGroup;
+    @Convert(converter = ObjectGroupConverter.class)
+    private ObjectGroup objectGroup;
 
     @Convert(converter = AprrovalStatusConverter.class)
     @Builder.Default
@@ -40,6 +40,12 @@ public class Approval extends PersistenceObject {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "approval")
     private List<ApprovalDetail> detailList = new ArrayList<>();
+
+    // todo: add these fields
+    // field approvalUserB
+    // field approvalUserA
+    // field approvalUserReject
+
 }
 
 
