@@ -1,0 +1,8 @@
+{
+  "car": {
+    "name": "Honda",
+    "year": 2017,
+    "transmission": "CVT",
+    "fuel": "LPG + Fuel oil"
+  }
+}
