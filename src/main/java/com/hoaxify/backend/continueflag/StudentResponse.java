@@ -1,7 +1,8 @@
 package com.hoaxify.backend.continueflag;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import lombok.experimental.Accessors;
 
 import java.util.List;
 
@@ -10,10 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentResponse {
+  @Getter(AccessLevel.NONE)
   private boolean hasMore;
   List<Student> students;
 
-  public boolean hasMore() {
+  @JsonProperty("devamFlag")
+  public boolean hasMore(){
     return hasMore;
   }
 }

@@ -20,10 +20,9 @@ public class StudentService {
     final var studentList = repository.findByLastId(request.getLastId(), QUERY_SIZE);
     final var totalCount = repository.countByLastId(request.getLastId());
     final boolean isContinue = totalCount > studentList.size();
-    StudentResponse response = StudentResponse.builder()
-      .hasMore(isContinue)
-      .students(studentList)
-      .build();
+    var response = new StudentResponse();
+    response.setHasMore(isContinue);
+    response.setStudents(studentList);
     return response;
   }
 
