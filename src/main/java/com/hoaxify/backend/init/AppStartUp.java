@@ -37,7 +37,7 @@ public class AppStartUp implements CommandLineRunner {
       .withIdentity(triggerKey)
       .withSchedule(
         CronScheduleBuilder
-          .cronSchedule("0/5 * * * * ?")
+          .cronSchedule("* * 2 * * ?")
           .withMisfireHandlingInstructionFireAndProceed()
           .inTimeZone(TimeZone.getTimeZone("Europe/Istanbul"))
       )

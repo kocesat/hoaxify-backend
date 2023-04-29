@@ -16,6 +16,13 @@ class DoubleTests {
   }
 
   @Test
+  void testDouble() {
+    double x = ((0.1 + 0.7) * 10);
+    var bd = BigDecimal.valueOf(x).setScale(2, RoundingMode.HALF_UP);
+    assertThat(bd).isEqualTo(new BigDecimal("8.00"));
+  }
+
+  @Test
   void testBigDecimal() {
     var augend1 = BigDecimal.valueOf(0.1);
     var augend2 = BigDecimal.valueOf(0.7);
