@@ -17,7 +17,7 @@ import javax.validation.Valid;
 public class AnnouncementController {
   private final AnnouncementService announcementService;
   @PostMapping
-  public ResponseEntity<Announcement> create(@RequestBody @Valid Announcement announcement) {
+public ResponseEntity<Announcement> create(@RequestBody @Valid Announcement announcement) {
     final Announcement announcementSaved = announcementService.create(announcement);
     return ResponseEntity.ok(announcementSaved);
   }
