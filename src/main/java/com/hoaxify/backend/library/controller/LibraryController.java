@@ -24,7 +24,7 @@ public class LibraryController {
     private BookRepository bookRepository;
 
     @PostMapping("/author")
-    public Author addBook(@RequestBody AuthorDto authorDto) {
+    public Author addAuthor(@RequestBody AuthorDto authorDto) {
         return authorRepository.save(Author.newInstance(authorDto));
     }
 

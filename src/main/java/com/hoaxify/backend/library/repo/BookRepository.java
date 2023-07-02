@@ -1,5 +1,6 @@
 package com.hoaxify.backend.library.repo;
 
+import com.hoaxify.backend.library.model.Author;
 import com.hoaxify.backend.library.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,4 +14,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Override
     @Query("from Book b join fetch b.author")
     List<Book> findAll();
+
+    List<Book> findByAuthor(Author author);
 }
