@@ -23,8 +23,7 @@ public class RegexController {
   @PostMapping("/validate-file")
   public Boolean validateFile(@RequestParam("file") MultipartFile file) {
     try {
-      byte[] content = file.getBytes();
-      return regexService.validateInput(new String(content, StandardCharsets.UTF_8));
+      return regexService.validateInput(file.getInputStream());
     } catch (IOException e) {
       throw new RuntimeException("file not read successfully");
     }
