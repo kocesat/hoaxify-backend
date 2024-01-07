@@ -25,7 +25,7 @@ public class RegexService {
   public Boolean validateInput(String input) {
     log.info("InputRead: " + input);
     String regex = parameterService
-      .getBySectionAndName(PARAM_SECTION, PARAM_NAME)
+      .getParameterValue(PARAM_SECTION, PARAM_NAME)
       .orElseThrow(() -> new IllegalStateException("param not found"));
     Pattern pattern = Pattern.compile(regex);
     int counter = 0;
@@ -57,7 +57,7 @@ public class RegexService {
 
   public Boolean validateInput(InputStream inputStream) {
     String regex = parameterService
-      .getBySectionAndName(PARAM_SECTION, PARAM_NAME)
+      .getParameterValue(PARAM_SECTION, PARAM_NAME)
       .orElseThrow(() -> new IllegalStateException("param not found"));
     Pattern pattern = Pattern.compile(regex);
     boolean illegalCharFound = false;

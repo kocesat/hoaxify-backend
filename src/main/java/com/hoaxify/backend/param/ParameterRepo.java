@@ -6,9 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ParameterRepo extends JpaRepository<Parameter, Long> {
+public interface ParameterRepo extends JpaRepository<ParameterItem, Long> {
 
-  List<Parameter> findBySectionAndName(String section, String name);
-
-  List<Parameter> findBySection(String section);
+  List<ParameterItem> findBySection(String section);
 }

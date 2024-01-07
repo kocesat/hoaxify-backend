@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -17,21 +14,24 @@ public class ParameterServiceImpl implements ParameterService{
   private final ParameterRepo parameterRepo;
 
   @Override
-  public Optional<String> getBySectionAndName(String section, String name) {
-    List<Parameter> params = parameterRepo.findBySectionAndName(section, name);
-    if (params.isEmpty()) {
-      return Optional.empty();
+  public Optional<String> getParameterValue(String section, String name) {
+    Map<String, ParameterItem> parameterMap = getParameters(section);
+    if (parameterMap.containsKey(name)) {
+      return Optional.ofNullable(parameterMap.get(name).getValue());
     }
-    return Optional.of(params.get(0).getValue());
+    return Optional.empty();
   }
 
   @Override
-  public Map<String, String> getBySection(String section) {
-    List<Parameter> params = parameterRepo.findBySection(section);
-    Map<String, String> paramMap = new HashMap<>();
-    for (Parameter param : params) {
-      paramMap.put(param.getName(), param.getValue());
+  public Map<String, ParameterItem> getParameters(String section) {
+    if (section == null || section.isEmpty()) {
+      return Collections.emptyMap();
     }
-    return paramMap;
+    Map<String, ParameterItem> parameterMap = new HashMap<>();
+    List<ParameterItem> params = parameterRepo.findBySection(section);
+    for (ParameterItem param : params) {
+      parameterMap.put(param.getName(), param);
+    }
+    return parameterMap;
   }
 }

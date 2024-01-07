@@ -25,24 +25,24 @@ public class AppStartUp implements CommandLineRunner {
       scheduler.deleteJob(jobKey);
     }
 
-    final JobDetail jobDetail = JobBuilder.newJob(EmailSendingJob.class)
-      .withIdentity(jobKey.getName(), jobKey.getGroup())
-      .withDescription("Sends announcements to recipients' email addresses")
-      .storeDurably()
-      .build();
-
-    final TriggerKey triggerKey = TriggerKey.triggerKey("emailSendingJobTrigger", "hoaxify");
-    final CronTrigger cronTrigger = TriggerBuilder.newTrigger()
-      .forJob(jobDetail)
-      .withIdentity(triggerKey)
-      .withSchedule(
-        CronScheduleBuilder
-          .cronSchedule("* * 2 * * ?")
-          .withMisfireHandlingInstructionFireAndProceed()
-          .inTimeZone(TimeZone.getTimeZone("Europe/Istanbul"))
-      )
-      .build();
-
-    scheduler.scheduleJob(jobDetail, cronTrigger);
+//    final JobDetail jobDetail = JobBuilder.newJob(EmailSendingJob.class)
+//      .withIdentity(jobKey.getName(), jobKey.getGroup())
+//      .withDescription("Sends announcements to recipients' email addresses")
+//      .storeDurably()
+//      .build();
+//
+//    final TriggerKey triggerKey = TriggerKey.triggerKey("emailSendingJobTrigger", "hoaxify");
+//    final CronTrigger cronTrigger = TriggerBuilder.newTrigger()
+//      .forJob(jobDetail)
+//      .withIdentity(triggerKey)
+//      .withSchedule(
+//        CronScheduleBuilder
+//          .cronSchedule("* * 2 * * ?")
+//          .withMisfireHandlingInstructionFireAndProceed()
+//          .inTimeZone(TimeZone.getTimeZone("Europe/Istanbul"))
+//      )
+//      .build();
+//
+//    scheduler.scheduleJob(jobDetail, cronTrigger);
   }
 }

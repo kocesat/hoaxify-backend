@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface ParameterService {
 
-  Optional<String> getBySectionAndName(String section, String name);
+  Optional<String> getParameterValue(String section, String name);
 
-  Map<String, String> getBySection(String section);
+  Map<String, ParameterItem> getParameters(String section);
 }
